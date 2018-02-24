@@ -45,6 +45,8 @@ class Menu extends Model
      */
     public function routes()
     {
+        Route::get('/', '\Sl0wik\Webset\Http\Controllers\ContentController@index');
+
         Content::each(function ($content) {
             Route::get($content->url_path, '\Sl0wik\Webset\Http\Controllers\ContentController@showBySlug');
         });

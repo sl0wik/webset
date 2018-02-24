@@ -9,6 +9,11 @@ use Mcamara\LaravelLocalization\LaravelLocalization;
 
 class ContentController extends Controller
 {
+    public function index()
+    {
+        return view('pages.index', ['content' => Content::indexPage()]);
+    }
+
     public function show(Content $content)
     {
         return view('pages.content', ['content' => $content]);
