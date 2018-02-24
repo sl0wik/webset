@@ -4,7 +4,7 @@ namespace Sl0wik\Webset;
 
 use Illuminate\Support\ServiceProvider;
 
-class ImageEditorServiceProvider extends ServiceProvider
+class WebsetServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
