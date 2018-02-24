@@ -1,0 +1,34 @@
+{
+    "name": "sl0wik/webset",
+    "description": "Set of basic web components.",
+    "keywords": ["webset", "content"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Michael Slowik"
+        }
+    ],
+    "require": {
+		"php": ">=5.4",
+        "illuminate/support": "5.*",
+        "sl0wik/laravel-image-editor": "*"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "Sl0wik\\Webset\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Sl0wik\\Webset\\WebsetServiceProvider"
+            ],
+            "aliases": {
+                "Menu": "Sl0wik\\Webset\\WebsetFacade"
+            }
+        }
+    }
+}
