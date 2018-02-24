@@ -16,7 +16,17 @@ class Content extends Model
      */
     public function childrens()
     {
-        return $this->hasMany(static::class, 'parent_id');
+        return $this->hasMany(static::class, 'parent_id')->orderBy('position', 'ASC');
+    }
+
+    /**
+     * Relation with parent.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo(static::class, 'parent_id');
     }
 
     /**
@@ -26,7 +36,7 @@ class Content extends Model
      */
     public static function indexPage()
     {
-        return self::orderBy('position', 'asc')->first();
+        return self::orderBy('position', 'ASC')->first();
     }
 
     /**
