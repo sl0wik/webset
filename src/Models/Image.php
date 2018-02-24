@@ -2,11 +2,11 @@
 
 namespace Sl0wik\Webset\Models;
 
-use Sl0wik\LaravelImageEditor\Traits\ImageCache;
-use Sl0wik\LaravelImageEditor\Traits\ImageEditor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use Sl0wik\LaravelImageEditor\Traits\ImageCache;
+use Sl0wik\LaravelImageEditor\Traits\ImageEditor;
 
 class Image extends Model
 {
@@ -60,6 +60,7 @@ class Image extends Model
     public function href()
     {
         $href = '/images/'.$this->hash.'/'.$this->size();
+
         return url($href);
     }
 

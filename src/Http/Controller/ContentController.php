@@ -2,10 +2,9 @@
 
 namespace Sl0wik\Webset\Http\Controllers;
 
-use Sl0wik\Webset\Models\Content;
-use Sl0wik\Webset\Models\Menu;
 use Illuminate\Http\Request;
 use Mcamara\LaravelLocalization\LaravelLocalization;
+use Sl0wik\Webset\Models\Content;
 
 class ContentController extends Controller
 {
@@ -18,10 +17,10 @@ class ContentController extends Controller
     {
         $uri = str_replace(LaravelLocalization::getCurrentLocale().'/', '', $request->route()->uri);
 
-    	$content = Content::where([
-    		['url_path', $uri],
-    		['language_code', LaravelLocalization::getCurrentLocale()]
-    	]);
+        $content = Content::where([
+            ['url_path', $uri],
+            ['language_code', LaravelLocalization::getCurrentLocale()],
+        ]);
 
         return view('pages.content', ['content' => $content->firstOrFail()]);
     }
