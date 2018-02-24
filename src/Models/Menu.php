@@ -2,7 +2,6 @@
 
 namespace Sl0wik\Webset\Models;
 
-use Sl0wik\Webset\Models\Content;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Route;
@@ -15,13 +14,14 @@ class Menu extends Model
      * Generate menu.
      *
      * @param string $name
+     *
      * @return array
      */
     public static function generate($name)
     {
         $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id'];
 
-    	$content = Menu::where('name', $name)
+        $content = self::where('name', $name)
             ->with('contents')
             ->first()
             ->contents()
@@ -35,7 +35,7 @@ class Menu extends Model
                 return $content;
             });
 
-    	return $content;
+        return $content;
     }
 
     /**
@@ -63,6 +63,7 @@ class Menu extends Model
                                 ->get(['language_code'])
                                 ->pluck('language_code')
                                 ->toArray();
+
         return Language::whereIn('code', $languageCodes);
     }
 
@@ -81,7 +82,8 @@ class Menu extends Model
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function contents () {
+    public function contents()
+    {
         return $this->belongsToMany(Content::class);
     }
 

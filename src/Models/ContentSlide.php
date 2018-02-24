@@ -2,8 +2,6 @@
 
 namespace Sl0wik\Webset\Models;
 
-use Sl0wik\Webset\Models\Content;
-use Sl0wik\Webset\Models\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
