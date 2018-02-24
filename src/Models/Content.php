@@ -69,4 +69,14 @@ class Content extends Model
     {
         return $query->where('status', 'active');
     }
+
+    /**
+     * Get href.
+     *
+     * @return string
+     */
+    public function getHrefAttribute()
+    {
+        return localize_url($this->url_path);
+    }
 }
