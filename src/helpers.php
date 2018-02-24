@@ -3,8 +3,9 @@
 /**
  * Returning translated (lozalized) url.
  *
- * @param string $url url for example /guides/{name}
+ * @param string      $url        url for example /guides/{name}
  * @param string|null $attributes For example ['name' => 'Brazil']
+ *
  * @return string Localized url for example /guias/Brazil
  */
 function localize_url($url, $attributes = null)
@@ -18,6 +19,7 @@ function localize_url($url, $attributes = null)
         );
         // LaravelLocalization seems to add locale even when its set to false
         $url = str_replace(LaravelLocalization::getCurrentLocale().'/', '', $url);
+
         return $url;
     } else {
         return \LaravelLocalization::getLocalizedURL(
@@ -30,7 +32,7 @@ function localize_url($url, $attributes = null)
 
 /**
  * Return current language code (locale).
- * Based on mcamara/laravel-localization function LaravelLocalization::getCurrentLocale()
+ * Based on mcamara/laravel-localization function LaravelLocalization::getCurrentLocale().
  *
  * @return string
  */

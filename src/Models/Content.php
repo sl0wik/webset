@@ -2,8 +2,6 @@
 
 namespace Sl0wik\Webset\Models;
 
-use Sl0wik\Webset\Models\ContentSlide;
-use Sl0wik\Webset\Models\Website;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -11,11 +9,11 @@ class Content extends Model
 {
     use SoftDeletes;
 
-	/**
-	 * Relation with childrens.
-	 *
-	 * @return Illuminate\Database\Eloquent\Relations\HasMany
-	 */
+    /**
+     * Relation with childrens.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function childrens()
     {
         return $this->hasMany(static::class, 'parent_id');
@@ -46,7 +44,8 @@ class Content extends Model
      *
      * @return Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function slides () {
+    public function slides()
+    {
         return $this->hasMany(ContentSlide::class);
     }
 }
