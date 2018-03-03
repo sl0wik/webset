@@ -25,6 +25,7 @@ class Menu extends Model
             ->with('contents')
             ->first()
             ->contents()
+            ->active()
             ->with([
                 'website:id,url',
                 'childrens:'.implode(',', $fields),
