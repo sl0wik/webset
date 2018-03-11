@@ -19,7 +19,7 @@ class Menu extends Model
      */
     public static function generate($name)
     {
-        $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id'];
+        $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id', 'status'];
 
         $content = self::where('name', $name)
             ->with('contents')
@@ -36,6 +36,13 @@ class Menu extends Model
                 return $content;
             });
 
+        // Hack to show only active contents. Should be resolved using with(), but didnt work while using childrens:fields and where().
+        $content->flatMap(function ($content) {
+            $content->childrens = $content->childrens->filter(function ($children) {
+                return $children->status == 'active';
+            });
+            return $content;
+        });
         return $content;
     }
 
