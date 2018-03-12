@@ -41,8 +41,10 @@ class Menu extends Model
             $content->childrens = $content->childrens->filter(function ($children) {
                 return $children->status == 'active';
             });
+
             return $content;
         });
+
         return $content;
     }
 
