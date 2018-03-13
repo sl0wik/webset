@@ -10,7 +10,7 @@ class ComponentPayload extends Model
     use SoftDeletes;
 
     /**
-     * Json objects
+     * Json objects.
      *
      * @var array
      */
