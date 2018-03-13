@@ -4,10 +4,23 @@ namespace Sl0wik\Webset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Sl0wik\Webset\Models\ContentTemplate;
+use Sl0wik\Webset\Models\ComponentPayload;
 
 class Content extends Model
 {
     use SoftDeletes;
+
+    /**
+     * Casted variables.
+     *
+     * @var array
+     */
+    protected $casts = [
+         'has_childrens' => 'boolean',
+         'custom' => 'object',
+         'content_template_payload' => 'object',
+    ];
 
     /**
      * Relation with childrens.
@@ -79,5 +92,41 @@ class Content extends Model
     public function getHrefAttribute()
     {
         return localize_url($this->url_path);
+    }
+
+    /**
+     * Relationship with content template.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function contentTemplate()
+    {
+        return $this->belongsTo(ContentTemplate::class);
+    }
+
+    /**
+     * Relation with component payloads.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function componentPayloads () {
+        return $this->hasMany(ComponentPayload::class);
+    }
+
+    /**
+     * Get components.
+     *
+     * @return Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function getComponents ($name = null) {
+        $query = $this->componentPayloads();
+        if ($name) {
+            $query->whereHas('component', function ($query) use ($name) {
+                $query->where('name', $name);
+            });
+        }
+        return $query->get()->map(function ($component) {
+            return $component->payload;
+        });
     }
 }
