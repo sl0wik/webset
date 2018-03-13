@@ -10,12 +10,14 @@ class ContentController extends Controller
 {
     public function index()
     {
-        return view('pages.index', ['content' => Content::indexPage()]);
+        $content = Content::indexPage();
+
+        return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
 
     public function show(Content $content)
     {
-        return view('pages.content', ['content' => $content]);
+        return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
 
     public function showBySlug(Request $request)
@@ -25,8 +27,8 @@ class ContentController extends Controller
         $content = Content::where([
             ['url_path', $uri],
             ['language_code', LaravelLocalization::getCurrentLocale()],
-        ]);
+        ])->firstOrFail();
 
-        return view('pages.content', ['content' => $content->firstOrFail()]);
+        return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
 }
