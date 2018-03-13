@@ -4,8 +4,6 @@ namespace Sl0wik\Webset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Sl0wik\Webset\Models\ContentTemplate;
-use Sl0wik\Webset\Models\ComponentPayload;
 
 class Content extends Model
 {
@@ -17,8 +15,8 @@ class Content extends Model
      * @var array
      */
     protected $casts = [
-         'has_childrens' => 'boolean',
-         'custom' => 'object',
+         'has_childrens'            => 'boolean',
+         'custom'                   => 'object',
          'content_template_payload' => 'object',
     ];
 
@@ -109,7 +107,8 @@ class Content extends Model
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function componentPayloads () {
+    public function componentPayloads()
+    {
         return $this->hasMany(ComponentPayload::class);
     }
 
@@ -118,13 +117,15 @@ class Content extends Model
      *
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function getComponents ($name = null) {
+    public function getComponents($name = null)
+    {
         $query = $this->componentPayloads();
         if ($name) {
             $query->whereHas('component', function ($query) use ($name) {
                 $query->where('name', $name);
             });
         }
+
         return $query->get()->map(function ($component) {
             return $component->payload;
         });
