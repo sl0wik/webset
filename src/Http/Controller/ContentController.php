@@ -10,7 +10,7 @@ class ContentController extends Controller
 {
     public function index()
     {
-        $content = Content::indexPage();
+        $content = Content::where('website_id', env('WEBSITE_ID'))->indexPage();
 
         return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
@@ -24,10 +24,11 @@ class ContentController extends Controller
     {
         $uri = str_replace(LaravelLocalization::getCurrentLocale().'/', '', $request->route()->uri);
 
-        $content = Content::where([
-            ['url_path', $uri],
-            ['language_code', LaravelLocalization::getCurrentLocale()],
-        ])->firstOrFail();
+        $content = Content::where('website_id', env('WEBSITE_ID'))
+            ->where([
+                ['url_path', $uri],
+                ['language_code', LaravelLocalization::getCurrentLocale()],
+            ])->firstOrFail();
 
         return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
