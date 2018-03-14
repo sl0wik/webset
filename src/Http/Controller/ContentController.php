@@ -10,7 +10,7 @@ class ContentController extends Controller
 {
     public function index()
     {
-        $content = Content::where('website_id', env('WEBSITE_ID'))->indexPage();
+        $content = Content::indexPage();
 
         return view("pages.{$content->contentTemplate->name}", ['content' => $content]);
     }
