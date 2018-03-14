@@ -47,7 +47,7 @@ class Content extends Model
      */
     public static function indexPage()
     {
-        return self::orderBy('position', 'ASC')->first();
+        return self::whereNull('parent_id')->orderBy('position', 'ASC')->first();
     }
 
     /**
