@@ -126,8 +126,26 @@ class Content extends Model
             });
         }
 
-        return $query->get()->map(function ($component) {
-            return $component->payload;
+        return $query->get()->map(function ($componentPayload) {
+            $output = $componentPayload->payload;
+
+            if ($componentPayload->component->custom('gallery')) {
+                $images = Image::where([['parent_type', 'component-payloads'], ['parent_id', $componentPayload->id]])->get();
+                $output->images = $images->map(function ($image) {
+                    $outputImage = (object) $image->toArray();
+                    $outputImage->href = $image->href();
+
+                    return $outputImage;
+                });
+            }
+            if ($componentPayload->component->custom('image')) {
+                if ($image = Image::find($componentPayload->image_id)) {
+                    $output->image = (object) $image->toArray();
+                    $output->image->href = $image->href();
+                }
+            }
+
+            return $output;
         });
     }
 }

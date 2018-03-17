@@ -27,4 +27,14 @@ class ComponentPayload extends Model
     {
         return $this->belongsTo(Component::class);
     }
+
+    /**
+     * Relation with images.
+     *
+     * @return type
+     */
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'parent');
+    }
 }
