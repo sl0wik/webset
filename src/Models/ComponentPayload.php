@@ -4,7 +4,6 @@ namespace Sl0wik\Webset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Sl0wik\Webset\Models\Image;
 
 class ComponentPayload extends Model
 {
@@ -30,7 +29,7 @@ class ComponentPayload extends Model
     }
 
     /**
-     * Relation with images
+     * Relation with images.
      *
      * @return type
      */

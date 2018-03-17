@@ -10,7 +10,7 @@ class Component extends Model
     use SoftDeletes;
 
     /**
-     * Json objects
+     * Json objects.
      *
      * @var array
      */
@@ -22,6 +22,7 @@ class Component extends Model
      * Get custom values.
      *
      * @param string $key
+     *
      * @return string|null
      */
     public function custom($key)
@@ -29,6 +30,5 @@ class Component extends Model
         if (isset($this->custom->$key)) {
             return $this->custom->$key;
         }
-        return null;
     }
 }
