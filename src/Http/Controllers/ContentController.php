@@ -4,6 +4,7 @@ namespace Sl0wik\Webset\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LaravelLocalization;
+use Sl0wik\Webset\Http\Controllers\Controller;
 use Sl0wik\Webset\Models\Content;
 
 class ContentController extends Controller
