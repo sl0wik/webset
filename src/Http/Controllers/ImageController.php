@@ -2,8 +2,6 @@
 
 namespace Sl0wik\Webset\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Sl0wik\Webset\Http\Controllers\Controller;
 use Sl0wik\Webset\Models\Image;
 
 class ImageController extends Controller
@@ -13,6 +11,7 @@ class ImageController extends Controller
      *
      * @param string $hash
      * @param string $size
+     *
      * @return Illuminate\Http\Response
      */
     public function showByHash($hash, $size = null)
@@ -21,6 +20,7 @@ class ImageController extends Controller
         if ($size) {
             return $image->size($size)->response();
         }
+
         return $image->response();
     }
 }

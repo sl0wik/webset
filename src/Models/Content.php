@@ -4,7 +4,6 @@ namespace Sl0wik\Webset\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Sl0wik\Webset\Models\Image;
 
 class Content extends Model
 {
