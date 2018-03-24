@@ -3,8 +3,9 @@
 /**
  * Short function to return key from dictionary. Laravel trans() helper behing.
  *
- * @param string          $key      Key name like "dict.test".
- * @param string|null     $data     Optional parameters to trans.
+ * @param string      $key  Key name like "dict.test".
+ * @param string|null $data Optional parameters to trans.
+ *
  * @return string
  */
 function __t($key, $data = null)
