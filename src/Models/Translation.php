@@ -20,7 +20,7 @@ class Translation extends Model
         if (Cache::has($key)) {
             $cached = Cache::get($key);
         } else {
-            $cached = self::where($websiteId)->get();
+            $cached = self::where('website_id', $websiteId)->get();
             Cache::put($class, $cached, config('cache.translations.lifetime', 10));
         }
 
