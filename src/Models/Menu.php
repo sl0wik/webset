@@ -22,6 +22,7 @@ class Menu extends Model
         $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id', 'status'];
 
         $content = self::where('name', $name)
+            ->where('website_id', env('WEBSITE_ID'))
             ->with('contents')
             ->first()
             ->contents()

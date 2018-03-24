@@ -137,6 +137,7 @@ class Content extends Model
 
         return $query->get()->map(function ($componentPayload) {
             $output = $componentPayload->payload;
+            $output->component_name = $componentPayload->component->name;
 
             if ($componentPayload->component->custom('gallery')) {
                 $images = Image::where([['parent_type', 'component-payloads'], ['parent_id', $componentPayload->id]])->get();
