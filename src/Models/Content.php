@@ -115,7 +115,8 @@ class Content extends Model
     /**
      * Get components by name/names.
      *
-     * @param  string|array                                     $name   Component name or array with names.
+     * @param string|array $name Component name or array with names.
+     *
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function getComponents($name = null)
