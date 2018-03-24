@@ -113,16 +113,24 @@ class Content extends Model
     }
 
     /**
-     * Get components.
+     * Get components by name/names.
      *
+     * @param  string|array                                     $name   Component name or array with names.
      * @return Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function getComponents($name = null)
     {
         $query = $this->componentPayloads();
-        if ($name) {
-            $query->whereHas('component', function ($query) use ($name) {
-                $query->where('name', $name);
+
+        if (is_string($name)) {
+            $names = [$name];
+        } elseif (is_array($name)) {
+            $names = $name;
+        }
+
+        if (!empty($names)) {
+            $query->whereHas('component', function ($query) use ($names) {
+                $query->whereIn('name', $names);
             });
         }
 
