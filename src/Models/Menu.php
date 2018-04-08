@@ -13,19 +13,22 @@ class Menu extends Model
     /**
      * Generate menu.
      *
-     * @param string $name
-     *
+     * @param string         $name
+     * @param string|null    $languageCode
      * @return array
      */
-    public static function generate($name)
+    public static function generate($name, $languageCode = null)
     {
+        if (empty($languageCode)) {
+            $languageCode = getCurrentLanguageCode();
+        }
         $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id', 'status'];
-
         $content = self::where('name', $name)
             ->where('website_id', env('WEBSITE_ID'))
             ->with('contents')
             ->first()
             ->contents()
+            ->where('language_code', $languageCode)
             ->active()
             ->with([
                 'website:id,url',
