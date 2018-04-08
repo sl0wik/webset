@@ -13,8 +13,9 @@ class Menu extends Model
     /**
      * Generate menu.
      *
-     * @param string         $name
-     * @param string|null    $languageCode
+     * @param string      $name
+     * @param string|null $languageCode
+     *
      * @return array
      */
     public static function generate($name, $languageCode = null)
