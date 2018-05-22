@@ -47,7 +47,13 @@ class Content extends Model
      */
     public static function indexPage()
     {
-        return self::where('website_id', env('WEBSITE_ID'))->whereNull('parent_id')->orderBy('position', 'ASC')->first();
+        $languageCode = getCurrentLanguageCode();
+
+        return self::where('website_id', env('WEBSITE_ID'))
+            ->where('language_code', $languageCode)
+            ->whereNull('parent_id')
+            ->orderBy('position', 'ASC')
+            ->first();
     }
 
     /**
