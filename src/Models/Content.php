@@ -146,7 +146,10 @@ class Content extends Model
             $output->component_name = $componentPayload->component->name;
 
             if ($componentPayload->component->custom('gallery')) {
-                $images = Image::where([['parent_type', 'component-payloads'], ['parent_id', $componentPayload->id]])->get();
+                $images = Image::where([['parent_type', 'component-payloads'], ['parent_id', $componentPayload->id]])
+                    ->orderBy('position', 'desc')
+                    ->orderBy('id', 'desc')
+                    ->get();
                 $output->images = $images->map(function ($image) {
                     $outputImage = (object) $image->toArray();
                     $outputImage->href = $image->href();
