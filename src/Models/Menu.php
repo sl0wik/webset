@@ -23,7 +23,7 @@ class Menu extends Model
         if (empty($languageCode)) {
             $languageCode = getCurrentLanguageCode();
         }
-        $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id', 'status'];
+        $fields = ['url_path', 'id', 'parent_id', 'head_title', 'menu_title', 'website_id', 'status', 'custom'];
         $content = self::where('name', $name)
             ->where('website_id', env('WEBSITE_ID'))
             ->with('contents')
