@@ -32,7 +32,7 @@ class Menu extends Model
             'website_id',
             'status',
             'position',
-            'custom'
+            'custom',
         ];
         $content = self::where('name', $name)
             ->where('website_id', env('WEBSITE_ID'))
